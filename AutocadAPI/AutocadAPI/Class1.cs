@@ -17,6 +17,7 @@ namespace AutocadAPI
     public class Class1
     {
         private List<List<Point3d>> lstMidPoints = new List<List<Point3d>>();
+        List<double> lstThickness = new List<double>();
         List<Wall> lstWalls = new List<Wall>();
 
         [CommandMethod("AttachXref")]
@@ -146,6 +147,7 @@ namespace AutocadAPI
             Database db = doc.Database;
 
             List<List<Point3d>> lstMidPoints = new List<List<Point3d>>();
+            List<double> lstThickness = new List<double>();
 
 
             List<Line> lstWallLines = new List<Line>();
@@ -184,6 +186,7 @@ namespace AutocadAPI
                     if (parallel != null && (lstWallLines[i].Length > parallel.Length))
                     {
                         lstWalls.Add(new List<Line> { lstWallLines[i], parallel });
+                        lstThickness.Add(MathHelper.DistanceBetweenTwoParallels(lstWallLines[i], parallel));
                     }
                 }
 
@@ -208,6 +211,12 @@ namespace AutocadAPI
                 trans.Commit();
             }
             this.lstMidPoints = lstMidPoints;
+            this.lstThickness = lstThickness;
+
+            for (int i = 0; i < lstMidPoints.Count; i++)
+            {
+                this.lstWalls.Add(new Wall(lstThickness[i], lstMidPoints[i][0], lstMidPoints[i][1]));
+            }
         }
     }
 }

@@ -13,7 +13,13 @@ namespace AutocadAPI.BuildingElements
         private Point3d stPt;
         private Point3d endPt;
 
-        
+
+        public Wall(double _thick, Point3d _stPt, Point3d _endPt)
+        {
+            thickness = _thick;
+            stPt = _stPt;
+            endPt = _endPt;
+        }
 
 
         public double Thickness
