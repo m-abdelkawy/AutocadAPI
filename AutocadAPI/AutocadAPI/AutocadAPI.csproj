@@ -56,7 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutocadHelper.cs" />
+    <Compile Include="BuildingElements\Wall.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="MathHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
